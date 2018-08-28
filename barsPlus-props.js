@@ -1,4 +1,4 @@
-﻿define( [ ],
+define( [ ],
 /**
  * barsPlus Properties - set up appearance of accordion properties panel in Qlik Sense
  * 
@@ -18,6 +18,12 @@
 */
 function () {
 	'use strict';
+	// Polyfill for IE
+	if (!String.prototype.startsWith) {
+		String.prototype.startsWith = function(search, pos) {
+			return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+		};
+	}
 	var dimensions = {
 		uses: "dimensions",
 		min: 0,
